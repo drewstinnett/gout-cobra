@@ -1,6 +1,7 @@
 # Gout Cobra
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/drewstinnett/gout-cobra.svg)](https://pkg.go.dev/github.com/drewstinnett/gout-cobra)
+[![Go Report Card](https://goreportcard.com/badge/github.com/drewstinnett/gout-cobra)](https://goreportcard.com/report/github.com/drewstinnett/gout-cobra)
 
 Integrates [gout](https://github.com/drewstinnett/gout) and [cobra](https://github.com/spf13/cobra) with some low code helpers.
 

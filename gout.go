@@ -9,6 +9,7 @@ import (
 
 	"github.com/drewstinnett/gout/v2"
 	"github.com/drewstinnett/gout/v2/config"
+	"github.com/drewstinnett/gout/v2/formats"
 	"github.com/drewstinnett/gout/v2/formats/gotemplate"
 	"github.com/spf13/cobra"
 )
@@ -86,14 +87,10 @@ func newConfig(opts ...Option) *Config {
 // func Bind(cmd *cobra.Command, config *Config) error {
 func Bind(cmd *cobra.Command, opts ...Option) error {
 	config := newConfig(opts...)
-	keys := []string{}
-	for k := range gout.BuiltInFormatters {
-		keys = append(keys, k)
-	}
 	cmd.PersistentFlags().String(
 		config.FormatField,
 		config.FormatDefault,
-		config.FormatHelp+" ("+strings.Join(keys, "|")+")",
+		config.FormatHelp+" ("+strings.Join(formats.Names(), "|")+")",
 	)
 	cmd.PersistentFlags().String(
 		config.FormatField+"-template",
@@ -105,7 +102,7 @@ func Bind(cmd *cobra.Command, opts ...Option) error {
 
 // Cmd sets up the the built-in Gout client using options from the cobra.Command
 func Cmd(cmd *cobra.Command, opts ...Option) error {
-	return CmdGout(cmd, gout.GetGout(), opts...)
+	return CmdGout(cmd, gout.Get(), opts...)
 }
 
 // CmdGout sets up a given gout using options from the cobra.Command
@@ -132,8 +129,9 @@ func apply(g *gout.Gout, cmd *cobra.Command, opts ...Option) error {
 			},
 		})
 	} else {
-		if fr, ok := gout.BuiltInFormatters[format]; ok {
-			g.SetFormatter(fr)
+		// if fr, ok := gout.BuiltInFormatters[format]; ok {
+		if fr, ok := formats.Formats[format]; ok {
+			g.SetFormatter(fr())
 		} else {
 			return fmt.Errorf("could not find the format %v", format)
 		}
