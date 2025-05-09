@@ -18,7 +18,7 @@ goutbra.Bind(cmd)
 By default, this creates `--format` and `--format-template` flags. You can change this by passing in options, like:
 
 ```go
-goutbra.Bind(cmd, WithField("my-special-format"))
+goutbra.Bind(cmd, goutbra.WithField("my-special-format"))
 ```
 
 Which would produce the flags `--my-special-format` and `--my-special-format-template`
