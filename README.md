@@ -5,7 +5,7 @@
 
 Integrates [gout](https://github.com/drewstinnett/gout) and [cobra](https://github.com/spf13/cobra) with some low code helpers.
 
-For a full example, take a look at [./examples/basic/main.go](./eamples/basic/main.go)
+For a full example, take a look at [./examples/basic/main.go](./examples/basic/main.go)
 
 ## Usage
 
